@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes App</title>
+  <link rel="stylesheet" href="/stylesheets/styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-zinc-900">
+  <div class="main w-full min-h-screen bg-zinc-900 mt-10">
+    <h1 class="flex items-center justify-center text-4xl text-yellow-500">A Perfect Notes App</h1>
+    <div class="form p-10 text-white">
+      <form action="/create" method="post">
+        <input class="block px-5 py-2 w-full rounded-lg outline-none bg-zinc-800" name="title" type="text"
+          placeholder="Enter the Title" />
+        <textarea class="block mt-2 px-5 py-2 rounded-lg outline-none w-full resize-none bg-zinc-800" name="details"
+          placeholder="Task Description"></textarea>
+        <input class="mt-2 bg-yellow-500 px-5 py-2 rounded-lg cursor-pointer hover:bg-yellow-600" type="submit"
+          value="Create Task" />
+      </form>
+    </div>
+    <div class="tasks flex gap-3 flex-wrap p-10">
+      <% if(files.length> 0){ %>
+        <% files.forEach(function(val){ %>
+          <div class="task w-72 px-3 py-4 rounded-lg bg-zinc-800">
+            <h1 class="text-white text-3xl tracking-tighter">
+              <%= val%>
+            </h1>
+            <div class="flex w-full justify-between items-center mt-3">
+              <a class="text-yellow-500 inline-block hover:text-yellow-600" href="/file/<%= val%>">Read More.</a>
+              <a class="text-zinc-600 hover:text-zinc-700" href="/edit/<%= val%>">Edit</a>
+            </div>
+          </div>
+          <% }) %>
+            <% } else { %>
+              <h3 class="text-zinc-600">No tasks yet.</h3>
+              <% } %>
+    </div>
+  </div>
+</body>
+
+</html>
